@@ -17,3 +17,4 @@ Example illustrating the use of [@aws-solutions-constructs/aws-cloudfront-apigat
 
 - [AWS Solutions doc for aws-cloudfront-apigateway](https://docs.aws.amazon.com/solutions/latest/constructs/aws-cloudfront-apigateway.html)
 - [@aws-solutions-constructs/aws-cloudfront-apigateway](https://github.com/awslabs/aws-solutions-constructs/tree/main/source/patterns/@aws-solutions-constructs/aws-cloudfront-apigateway)
+- [The Lambda Trilogy](https://github.com/cdk-patterns/serverless/tree/main/the-lambda-trilogy/typescript) - discusses 3 potential patterns for organising, encapsulating and deploying logic in lambdas
