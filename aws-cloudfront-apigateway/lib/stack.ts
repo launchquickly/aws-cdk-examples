@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { CloudFrontToApiGateway } from '@aws-solutions-constructs/aws-cloudfront-apigateway';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { AuthorizationType, EndpointType, JsonSchemaType, LambdaIntegration, LambdaRestApi, Model, RequestValidator } from 'aws-cdk-lib/aws-apigateway';
-import { AllowedMethods, CachePolicy, CacheQueryStringBehavior } from 'aws-cdk-lib/aws-cloudfront';
+import { AllowedMethods, CachePolicy, CacheQueryStringBehavior, GeoRestriction, PriceClass, ViewerProtocolPolicy } from 'aws-cdk-lib/aws-cloudfront';
 
 export class AwsCloudfrontApigatewayStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -30,10 +30,10 @@ export class AwsCloudfrontApigatewayStack extends Stack {
 
     hello.addMethod('GET', new LambdaIntegration(helloLambda), {
       requestParameters: {
-        "method.request.querystring.greetName": true,
+        'method.request.querystring.greetName': true,
       },
       requestValidatorOptions: {
-        requestValidatorName: "querystring-validator",
+        requestValidatorName: 'querystring-validator',
         validateRequestBody: false,
         validateRequestParameters: true
       }
@@ -85,8 +85,11 @@ export class AwsCloudfrontApigatewayStack extends Stack {
             allowedMethods: AllowedMethods.ALLOW_ALL,
             cachePolicy: new CachePolicy(this, 'bespokeCachePolicy', {
               queryStringBehavior: CacheQueryStringBehavior.allowList('greetName')
-            })
-          }
+            }),
+            viewerProtocolPolicy: ViewerProtocolPolicy.HTTPS_ONLY
+          },
+          geoRestriction: GeoRestriction.allowlist('GB'),
+          priceClass: PriceClass.PRICE_CLASS_100
         },
         existingApiGatewayObj: apiGateway
     });
