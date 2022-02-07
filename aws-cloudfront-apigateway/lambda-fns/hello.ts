@@ -3,7 +3,7 @@ export {};
 exports.handler = async (event:any) => {
   console.log(JSON.stringify(event, null, 2));
 
-  return sendRes(200, `Hello, CDK! You've hit ${event.path}\n`);
+  return sendRes(200, `Hello, ${event.queryStringParameters.greetName}! You've hit ${event.path}\n`);
 }
 
 const sendRes = (status:number, body:string) => {

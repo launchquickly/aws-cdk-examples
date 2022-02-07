@@ -16,14 +16,14 @@ Each API Gateway endpoint in implemented as a single unique function and the lam
 ### Amazon API Gateway
 
 * API Gateway with 2 REST endpoints:
-    * /hello
-    * /goodbye
+    * /hello - GET endpoint that validates for required querystring 'greetName'
+    * /goodbye - POST endpoint that validates body for required 'name' attribute and sends back a response
 * Enable X-Ray Tracing
 
 ### AWS Lambda
 
 * Lambda function that prints a hello message for /hello endpoint
-* Lambda function that prints a goodbye message for /goodbye endpoint
+* Lambda function that responds with a json message for /goodbye endpoint
 
 ## Useful commands
 
